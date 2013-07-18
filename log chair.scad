@@ -1,0 +1,56 @@
+//////////////////////////////////////////////////////////////////////////////////////Open SCAD/////////////////////////////////
+/*//////////////////////////////////////////////////////////////
+
+date started:	6/10/2013	
+date finished:	
+modeler:			Patrick Conner
+copyright:		N/A
+
+*/
+
+
+//////////////////////////////////////////////////////////////////////////////////////////parameters/////////////////////////////////////////////////////////////////////////////////////////
+slope_distance=(cos(5)*(100-4*4*3));
+slope_regress=(sin(5)*(100-4*4*3)*3);
+arm_x=(4*10);
+base_length=(100-(4*4));
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////renders//////////////////////////////////////////////////////////////////////////////////////////
+
+
+for(back_x=[-4:4]){
+	translate([back_x*10,0,0])
+		rotate([-15,0,0])
+			cylinder(100-(back_x*back_x*3),5,5);
+	translate([back_x*10,0,0])
+		rotate([90,0,0])
+			cylinder(100-(back_x*back_x),5,5);
+}
+
+
+translate([arm_x,slope_regress,slope_distance])
+	rotate([90,0,0])
+		cylinder(base_length,5,5);
+translate([arm_x,-base_length,-1])
+	rotate([-15,0,0])
+		cylinder((100-4*4*3)+4,5,5);
+translate([-arm_x,slope_regress,slope_distance])
+	rotate([90,0,0])
+		cylinder(base_length,5,5);
+translate([-arm_x,-base_length,-1])
+	rotate([-15,0,0])
+		cylinder((100-4*4*3)+4,5,5);
+
+translate([-arm_x,-base_length,-80])
+	cylinder(80,5,5);
+translate([arm_x,-base_length,-80])
+	cylinder(80,5,5);
+translate([-arm_x,0,-80])
+	cylinder(80,5,5);
+translate([arm_x,0,-80])
+	cylinder(80,5,5);
+
+echo(slope_distance, base_length);
+/////////////////////////////////////////////////////////////////////////////////////////////modules/////////////////////////////////////////////////////////////////////////////////////////
